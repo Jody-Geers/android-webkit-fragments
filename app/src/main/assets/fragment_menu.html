@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+    <link rel="stylesheet" href="./bin/build.css" />
+
+    <script src="./lib/knockout.js"></script>
+
+</head>
+<body>
+
+<div id="navigation">
+
+    <div id="navigation-menu">
+
+        <ul>
+
+            <a href="javascript:void();" data-bind="click: sendToJava, attr: { id: blueFragment }">
+                <li>Blue</li>
+            </a>
+
+            <a href="javascript:void();" data-bind="click: sendToJava, attr: { id: redFragment }">
+                <li>Red</li>
+            </a>
+
+        </ul>
+
+    </div>
+
+</div>
+
+</body>
+<script>
+
+    /**
+    * View Model - Uses ko to bind to UI.
+    * @param {object} - Javascript interface from java
+    * @access private
+    */
+    (function ( args ) {
+
+        var _vm = {
+
+            blueFragment : args.getBlueFragment(),
+            redFragment : args.getRedFragment(),
+
+            sendToJava: function ( self, event ) {
+                args.updateUi( event.target.parentNode.id );
+            }
+
+        };
+
+        ko.applyBindings( _vm );
+
+    })( androidInterface );
+
+</script>
+</html>
